@@ -274,7 +274,7 @@
             `;
         }
 
-        function adjustLevel(input) {
+        function adjustCurrentLevel(input) {
             const rarity = document.getElementById('rarity').value;
             const minLevel = rarityStartLevel[rarity];
             let value = parseInt(input.value);
@@ -290,19 +290,21 @@
         document.getElementById('rarity').addEventListener('change', function () {
             const rarity = this.value;
             const minLevel = rarityStartLevel[rarity];
-            document.getElementById('currentLevel').min = minLevel;
-            document.getElementById('targetLevel').min = minLevel + 1;
+            const currentLevelInput = document.getElementById('currentLevel');
+            const targetLevelInput = document.getElementById('targetLevel');
+
+            currentLevelInput.min = minLevel;
+            currentLevelInput.value = Math.max(parseInt(currentLevelInput.value), minLevel);
+
+            targetLevelInput.min = minLevel + 1;
+            targetLevelInput.value = Math.max(parseInt(targetLevelInput.value), minLevel + 1);
+
             updateRarityIcon();
-            adjustLevel(document.getElementById('currentLevel'));
-            adjustLevel(document.getElementById('targetLevel'));
+            calculateUpgrade();
         });
 
         document.getElementById('currentLevel').addEventListener('blur', function () {
-            adjustLevel(this);
-        });
-
-        document.getElementById('targetLevel').addEventListener('blur', function () {
-            adjustLevel(this);
+            adjustCurrentLevel(this);
         });
 
         document.getElementById('currentLevel').addEventListener('input', calculateUpgrade);
