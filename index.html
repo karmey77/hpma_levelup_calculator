@@ -274,6 +274,13 @@
             `;
         }
 
+        function adjustTargetLevel() {
+            const currentLevel = parseInt(document.getElementById('currentLevel').value);
+            const targetLevelInput = document.getElementById('targetLevel');
+            const newTargetLevel = Math.min(currentLevel + 1, 18);
+            targetLevelInput.value = newTargetLevel;
+        }
+
         function adjustCurrentLevel(input) {
             const rarity = document.getElementById('rarity').value;
             const minLevel = rarityStartLevel[rarity];
@@ -284,6 +291,7 @@
             } else if (value > 17) {
                 input.value = 17;
             }
+            adjustTargetLevel();
             calculateUpgrade();
         }
 
@@ -306,8 +314,8 @@
         });
 
         document.getElementById('currentLevel').addEventListener('input', function () {
-            // 只在输入有效数字时计算
             if (this.value !== '') {
+                adjustTargetLevel();
                 calculateUpgrade();
             }
         });
