@@ -287,19 +287,20 @@
             calculateUpgrade();
         }
 
-        document.getElementById('rarity').addEventListener('change', function () {
-            const rarity = this.value;
+        function updateRaritySettings() {
+            const rarity = document.getElementById('rarity').value;
             const minLevel = rarityStartLevel[rarity];
             const currentLevelInput = document.getElementById('currentLevel');
             const targetLevelInput = document.getElementById('targetLevel');
 
             currentLevelInput.min = minLevel;
-            currentLevelInput.value = Math.max(parseInt(currentLevelInput.value), minLevel);
-
             targetLevelInput.min = minLevel + 1;
-            targetLevelInput.value = Math.max(parseInt(targetLevelInput.value), minLevel + 1);
 
             updateRarityIcon();
+        }
+
+        document.getElementById('rarity').addEventListener('change', function () {
+            updateRaritySettings();
             calculateUpgrade();
         });
 
@@ -307,10 +308,16 @@
             adjustCurrentLevel(this);
         });
 
-        document.getElementById('currentLevel').addEventListener('input', calculateUpgrade);
+        document.getElementById('currentLevel').addEventListener('input', function () {
+            // 只在输入有效数字时计算
+            if (this.value !== '') {
+                calculateUpgrade();
+            }
+        });
+
         document.getElementById('targetLevel').addEventListener('input', calculateUpgrade);
 
-        updateRarityIcon();
+        updateRaritySettings();
         calculateUpgrade(); 
     </script>
 </body>
