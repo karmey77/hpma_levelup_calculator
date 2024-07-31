@@ -14,13 +14,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap"
         rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap"
-        rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/d409d56ba2.js" crossorigin="anonymous"></script>
     <style>
         @font-face {
@@ -90,6 +83,36 @@
             font-family: 'CustomFont', 'Times New Roman', serif;
         }
 
+        /* 調整 slider 的大小 */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #8b4513;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #8b4513;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
         .result {
             text-align: center;
             font-size: 1.25rem;
@@ -119,7 +142,6 @@
 
         .rarity-select {
             flex-grow: 1;
-            margin-top: 5%;
         }
 
         .error {
@@ -156,7 +178,6 @@
         }
     </style>
 </head>
-
 
 <body>
     <header>
@@ -221,6 +242,7 @@
         </div>
     </footer>
     <script>
+        // 升級所需卡片數據
         const upgradeData = {
             Normal: [1, 2, 3, 5, 8, 12, 20, 30, 45, 70, 100, 140, 190, 250, 320, 410, 510],
             Rare: [0, 0, 1, 2, 3, 5, 8, 10, 12, 18, 25, 35, 50, 70, 95, 125, 160],
@@ -229,8 +251,10 @@
             'Dark&Mythic': [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 10, 12]
         };
 
+        // 升級所需金幣數據
         const goldData = [100, 150, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 15000, 20000, 25000, 30000];
 
+        // 各稀有度的起始等級
         const rarityStartLevel = {
             Normal: 1,
             Rare: 3,
@@ -239,12 +263,14 @@
             'Dark&Mythic': 9
         };
 
+        // 更新稀有度圖標
         function updateRarityIcon() {
             const select = document.getElementById('rarity');
             const icon = document.getElementById('rarityIcon');
             icon.src = select.options[select.selectedIndex].getAttribute('data-icon');
         }
 
+        // 計算升級所需資源
         function calculateUpgrade() {
             const rarity = document.getElementById('rarity').value;
             let currentLevel = parseInt(document.getElementById('currentLevel').value);
@@ -275,6 +301,7 @@
             `;
         }
 
+        // 調整目標等級
         function adjustTargetLevel() {
             const currentLevel = parseInt(document.getElementById('currentLevel').value);
             const targetLevelInput = document.getElementById('targetLevel');
@@ -282,29 +309,7 @@
             targetLevelInput.value = newTargetLevel;
         }
 
-        function adjustCurrentLevel(input) {
-            const rarity = document.getElementById('rarity').value;
-            const minLevel = rarityStartLevel[rarity];
-            let value = parseInt(input.value);
-
-            if (isNaN(value) || value < minLevel) {
-                input.value = minLevel;
-            } else if (value > 17) {
-                input.value = 17;
-            }
-            adjustTargetLevel();
-            calculateUpgrade();
-        }
-
-        function updateRaritySettings() {
-            const rarity = document.getElementById('rarity').value;
-            const minLevel = rarityStartLevel[rarity];
-            const currentLevelInput = document.getElementById('currentLevel');
-            const targetLevelInput = document.getElementById('targetLevel');
-
-            updateRarityIcon();
-        }
-
+        // 更新滑塊顯示
         function updateSliders() {
             const rarity = document.getElementById('rarity').value;
             const minLevel = rarityStartLevel[rarity];
@@ -322,26 +327,15 @@
             targetLevelDisplay.textContent = targetLevelSlider.value;
 
             calculateUpgrade();
+            calculateUpgrade();
         }
 
+        // 事件監聽器
         document.getElementById('rarity').addEventListener('change', function () {
-            updateRaritySettings();
-            calculateUpgrade();
+            updateRarityIcon();
+            updateSliders();
         });
 
-        document.getElementById('rarity').addEventListener('change', updateSliders);
-
-
-        document.getElementById('currentLevel').addEventListener('blur', function () {
-            adjustCurrentLevel(this);
-        });
-
-        document.getElementById('currentLevel').addEventListener('input', function () {
-            if (this.value !== '') {
-                adjustTargetLevel();
-                calculateUpgrade();
-            }
-        });
         document.getElementById('currentLevel').addEventListener('input', function () {
             const targetLevelSlider = document.getElementById('targetLevel');
             targetLevelSlider.min = Math.min(parseInt(this.value) + 1, 18);
@@ -353,11 +347,9 @@
 
         document.getElementById('targetLevel').addEventListener('input', updateSliders);
 
-        document.getElementById('targetLevel').addEventListener('input', calculateUpgrade);
-
+        // 初始化
+        updateRarityIcon();
         updateSliders();
-        updateRaritySettings();
-        calculateUpgrade(); 
     </script>
 </body>
 
