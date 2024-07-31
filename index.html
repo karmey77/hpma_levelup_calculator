@@ -274,16 +274,37 @@
             `;
         }
 
+        function adjustLevel(input) {
+            const rarity = document.getElementById('rarity').value;
+            const minLevel = rarityStartLevel[rarity];
+            let value = parseInt(input.value);
+
+            if (isNaN(value) || value < minLevel) {
+                input.value = minLevel;
+            } else if (value > 17) {
+                input.value = 17;
+            }
+            calculateUpgrade();
+        }
+
         document.getElementById('rarity').addEventListener('change', function () {
             const rarity = this.value;
             const minLevel = rarityStartLevel[rarity];
-            document.getElementById('currentLevel').value = minLevel;
             document.getElementById('currentLevel').min = minLevel;
-            document.getElementById('targetLevel').value = Math.min(minLevel + 1, 18);
             document.getElementById('targetLevel').min = minLevel + 1;
             updateRarityIcon();
-            calculateUpgrade();
+            adjustLevel(document.getElementById('currentLevel'));
+            adjustLevel(document.getElementById('targetLevel'));
         });
+
+        document.getElementById('currentLevel').addEventListener('blur', function () {
+            adjustLevel(this);
+        });
+
+        document.getElementById('targetLevel').addEventListener('blur', function () {
+            adjustLevel(this);
+        });
+
         document.getElementById('currentLevel').addEventListener('input', calculateUpgrade);
         document.getElementById('targetLevel').addEventListener('input', calculateUpgrade);
 
