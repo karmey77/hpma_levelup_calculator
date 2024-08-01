@@ -4,11 +4,16 @@ header {
 
 .navbar .navbar-brand {
     color: #4592af;
-    font-size:medium;
+    font-size: small;
 }
 
 .navbar .navbar-brand:hover {
     color: #226089;
+}
+
+.navbar {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
 }
 
 .banner {
@@ -110,7 +115,7 @@ header {
     /* 文字顏色 */
     text-decoration: none;
     /* 沒有底線 */
-    margin: 0 5px;
+    margin: 0 3px;
     /* 圖示間隔 */
 }
 
