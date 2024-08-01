@@ -6,219 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://i.imgur.com/1rU9rm4.jpg">
     <title>Calculator 卡牌升級計算器</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="stylesheets/show.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/d409d56ba2.js" crossorigin="anonymous"></script>
-    <style>
-        @font-face {
-            font-family: 'CustomFont';
-            src: url('jf-openhuninn-2.0.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'CustomFont', arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f0e6d2 url('bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #3a3a3a;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 0.5rem;
-            padding: 1rem 0;
-        }
-
-        .calculator {
-            margin-top: 0;
-            background: rgba(255, 245, 238, 0.9);
-            border-radius: 15px;
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            border: 2px solid #8b4513;
-        }
-
-        h1,
-        h5 {
-            font-family: 'CustomFont', arial, sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: .8rem;
-            font-size: 1.5rem;
-            color: #8b4513;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #8b4513;
-            font-size: 1rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        label,
-        select,
-        input {
-            display: block;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        select,
-        input {
-            padding: 0.5rem;
-            border: 1px solid #8b4513;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.7);
-            color: #3a3a3a;
-            font-family: 'CustomFont', 'Times New Roman', serif;
-        }
-
-        /* 調整 slider 的大小 */
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 25px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #8b4513;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #8b4513;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .result {
-            text-align: center;
-            font-size: .8rem;
-            margin-top: 1.5rem;
-            background: rgba(139, 69, 19, 0.1);
-            padding: .8rem;
-            border-radius: 5px;
-            line-height: 1.6;
-        }
-
-        .result span {
-            color: #d35400;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-        }
-
-        .rarity-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .rarity-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .rarity-select {
-            flex-grow: 1;
-            margin-top: 5%;
-        }
-
-        .error {
-            color: #c0392b;
-            text-align: center;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-
-        header,
-        footer {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: .3rem 0;
-            width: 100%;
-            margin-bottom: 0;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .youtube-embed {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 1rem;
-            width: 100%;
-            margin-left: 2.1rem;
-        }
-
-        .youtube-embed iframe {
-            max-width: 100%;
-            margin: 0 auto;
-            display: block;
-        }
-
-        .author {
-            text-align: center;
-            color: #3a3a3a;
-            font-size: 0.8rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0.2rem;
-            /* Add some space below the author line */
-        }
-
-        .source {
-            text-align: center;
-            font-size: 0.7rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            /* Reduce space below the source line */
-        }
-    </style>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#" style="text-align: center;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
                     <img src="./avatar.jpg" width="15" height="15" style="margin-bottom: .15rem;"
                         class="d-inline-block align-center">
                     魔法覺醒卡牌升級計算器
                 </a>
-
                 <div class="social-media">
                     <a href="https://www.youtube.com/channel/UC2ZDr0GakihR6IA-UHU5Iww?sub_confirmation=1"
                         target="_blank" class="social-media-link">
@@ -254,137 +62,25 @@
             </div>
             <label for="currentLevel">當前等級 Current Level：<span id="currentLevelDisplay">1</span></label>
             <input type="range" id="currentLevel" min="1" max="17" value="1">
-
             <label for="targetLevel">目標等級 Target Level：<span id="targetLevelDisplay">2</span></label>
             <input type="range" id="targetLevel" min="2" max="18" value="2">
             <div class="result" id="result"></div>
             <div class="error" id="error"></div>
-            <p class="author">Made by Odessa the Frog king</p>
+            <p class="author">Made by Odessa the Frog King</p>
             <p class="source">Materials from <a href="https://www.harrypottermagicawakened.tw/" target="_blank">Harry
-                    Potter: Magic Awaken</a></p>
+                    Potter: Magic Awakened</a></p>
         </div>
     </div>
-
     <footer>
         <p>子民的訂閱，就是國王持續創作的動力</p>
         <p>Subscribe to my YT channel!</p>
         <div class="youtube-embed">
             <iframe
                 src="https://www.youtube.com/subscribe_embed?usegapi=1&channelid=UC2ZDr0GakihR6IA-UHU5Iww&layout=full&count=default&origin=file%3A%2F%2F&gsrc=3p&ic=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_TW.bluFgl9RzNg.O%2Fd%3D1%2Frs%3DAHpOoo-Qvg0Vpu8ByrHTqzOHkWIJNSq9Og%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&id=I0_1697187806341&_gfid=I0_1697187806341&parent=file%3A%2F%2F&pfname=&rpctoken=15845621"
-                frameborder="0" style="padding-left: 3%; width: 100%; max-width: 300px; height: 60px;">
-            </iframe>
+                frameborder="0" style="padding-left: 3%; width: 100%; max-width: 300px; height: 60px;"></iframe>
         </div>
     </footer>
-    <script>
-        // 升級所需卡片數據
-        const upgradeData = {
-            Normal: [1, 2, 3, 5, 8, 12, 20, 30, 45, 70, 100, 140, 190, 250, 320, 410, 510],
-            Rare: [0, 0, 1, 2, 3, 5, 8, 10, 12, 18, 25, 35, 50, 70, 95, 125, 160],
-            Epic: [0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 8, 10, 13, 16, 20, 25, 30],
-            Legendary: [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 10, 12],
-            'Dark&Mythic': [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 10, 12]
-        };
-
-        // 升級所需金幣數據
-        const goldData = [100, 150, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 15000, 20000, 25000, 30000];
-
-        // 各稀有度的起始等級
-        const rarityStartLevel = {
-            Normal: 1,
-            Rare: 3,
-            Epic: 6,
-            Legendary: 9,
-            'Dark&Mythic': 9
-        };
-
-        // 更新稀有度圖標
-        function updateRarityIcon() {
-            const select = document.getElementById('rarity');
-            const icon = document.getElementById('rarityIcon');
-            icon.src = select.options[select.selectedIndex].getAttribute('data-icon');
-        }
-
-        // 計算升級所需資源
-        function calculateUpgrade() {
-            const rarity = document.getElementById('rarity').value;
-            let currentLevel = parseInt(document.getElementById('currentLevel').value);
-            let targetLevel = parseInt(document.getElementById('targetLevel').value);
-            const resultDiv = document.getElementById('result');
-            const errorDiv = document.getElementById('error');
-
-            const minLevel = rarityStartLevel[rarity];
-            if (currentLevel < minLevel) {
-                currentLevel = minLevel;
-                document.getElementById('currentLevel').value = minLevel;
-            }
-
-            if (targetLevel <= currentLevel || targetLevel > 18 || currentLevel < 1) {
-                errorDiv.textContent = "請輸入有效的等級範圍。 Please enter a valid level range.";
-                resultDiv.innerHTML = "";
-                return;
-            }
-
-            errorDiv.textContent = "";
-
-            const cards = upgradeData[rarity].slice(currentLevel - 1, targetLevel - 1).reduce((a, b) => a + b, 0);
-            const gold = goldData.slice(currentLevel - 1, targetLevel - 1).reduce((a, b) => a + b, 0);
-
-            resultDiv.innerHTML = `
-                需要 <span>${cards}</span> 張卡與 <span>${gold.toLocaleString()}</span> 金幣<br>
-                <span>${cards}</span> card(s) and <span>${gold.toLocaleString()}</span> gold needed
-            `;
-        }
-
-        // 調整目標等級
-        function adjustTargetLevel() {
-            const currentLevel = parseInt(document.getElementById('currentLevel').value);
-            const targetLevelInput = document.getElementById('targetLevel');
-            const newTargetLevel = Math.min(currentLevel + 1, 18);
-            targetLevelInput.value = newTargetLevel;
-        }
-
-        // 更新滑塊顯示
-        function updateSliders() {
-            const rarity = document.getElementById('rarity').value;
-            const minLevel = rarityStartLevel[rarity];
-            const currentLevelSlider = document.getElementById('currentLevel');
-            const targetLevelSlider = document.getElementById('targetLevel');
-            const currentLevelDisplay = document.getElementById('currentLevelDisplay');
-            const targetLevelDisplay = document.getElementById('targetLevelDisplay');
-
-            currentLevelSlider.min = minLevel;
-            currentLevelSlider.value = Math.max(currentLevelSlider.value, minLevel);
-            targetLevelSlider.min = Math.min(parseInt(currentLevelSlider.value) + 1, 18);
-            targetLevelSlider.value = Math.max(targetLevelSlider.value, targetLevelSlider.min);
-
-            currentLevelDisplay.textContent = currentLevelSlider.value;
-            targetLevelDisplay.textContent = targetLevelSlider.value;
-
-            calculateUpgrade();
-            calculateUpgrade();
-        }
-
-        // 事件監聽器
-        document.getElementById('rarity').addEventListener('change', function () {
-            updateRarityIcon();
-            updateSliders();
-        });
-
-        document.getElementById('currentLevel').addEventListener('input', function () {
-            const targetLevelSlider = document.getElementById('targetLevel');
-            targetLevelSlider.min = Math.min(parseInt(this.value) + 1, 18);
-            if (parseInt(targetLevelSlider.value) < parseInt(targetLevelSlider.min)) {
-                targetLevelSlider.value = targetLevelSlider.min;
-            }
-            updateSliders();
-        });
-
-        document.getElementById('targetLevel').addEventListener('input', updateSliders);
-
-        // 初始化
-        updateRarityIcon();
-        updateSliders();
-    </script>
+    <script src="javascripts/script.js"></script>
 </body>
 
 </html>
